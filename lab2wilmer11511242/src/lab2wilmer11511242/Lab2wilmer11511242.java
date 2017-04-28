@@ -1,21 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lab2wilmer11511242;
 
-/**
- *
- * @author HP
- */
+import javax.swing.JOptionPane;
+
 public class Lab2wilmer11511242 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JOptionPane.showMessageDialog(null, "Bienvenido al juego de batalla ejercito");
+        char r = 's';
+        while (r == 's' || r == 'S') {
+           JOptionPane.showMessageDialog(null,"Ejercitos en batalla \n \n"
+           +"1. Ejericito ruso \n"
+                   + "2. Ejercito Aleman \n"
+                   + "3. Ejercito de Alumnos De Programacion II");
+           String opcion=JOptionPane.showInputDialog("Login \n \n"
+                   + "a. Operaciones Con Soldados Rusos\n"
+                   + "b. Operaciones con Soldados Alemanes\n"
+                   + "c. Operaciones con Alumnos de programacion II\n"
+                   + "d. Simulacion\n"
+                   + "  Salis  del juego");
+           
+           
+        }
     }
-    
+
 }
