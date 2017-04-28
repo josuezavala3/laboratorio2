@@ -15,15 +15,21 @@ public class Alumno {
     private String Apodo;
     private int numerodecuenta;
     private int edad;
-    private  ArrayList mochila;
+    private int resistencia;
+    private String gradoacdemico;
+    private String tipoarma;
+    private  String mochila;
 
     public Alumno() {
     }
 
-    public Alumno(String Apodo, int numerodecuenta, int edad, ArrayList mochila) {
+    public Alumno(String Apodo, int numerodecuenta, int edad, int resistencia, String gradoacdemico, String tipoarma, String mochila) {
         this.Apodo = Apodo;
         this.numerodecuenta = numerodecuenta;
         this.edad = edad;
+        this.resistencia = resistencia;
+        this.gradoacdemico = gradoacdemico;
+        this.tipoarma = tipoarma;
         this.mochila = mochila;
     }
 
@@ -51,12 +57,41 @@ public class Alumno {
         this.edad = edad;
     }
 
-    public ArrayList getMochila() {
+    public int getResistencia() {
+        return resistencia;
+    }
+
+    public void setResistencia(int resistencia) {
+        this.resistencia = resistencia;
+    }
+
+    public String getGradoacdemico() {
+        return gradoacdemico;
+    }
+
+    public void setGradoacdemico(String gradoacdemico) {
+        this.gradoacdemico = gradoacdemico;
+    }
+
+    public String getTipoarma() {
+        return tipoarma;
+    }
+
+    public void setTipoarma(String tipoarma) {
+        this.tipoarma = tipoarma;
+    }
+
+    public String getMochila() {
         return mochila;
     }
 
-    public void setMochila(ArrayList mochila) {
+    public void setMochila(String mochila) {
         this.mochila = mochila;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "Apodo=" + Apodo + ", numerodecuenta=" + numerodecuenta + ", edad=" + edad + ", resistencia=" + resistencia + ", gradoacdemico=" + gradoacdemico + ", tipoarma=" + tipoarma + ", mochila=" + mochila + '}';
+    }
+
 }
