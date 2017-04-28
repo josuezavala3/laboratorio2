@@ -1,6 +1,7 @@
 package lab2wilmer11511242;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class Lab2wilmer11511242 {
@@ -38,11 +39,18 @@ public class Lab2wilmer11511242 {
                         while (edad < 18) {
                             edad = Integer.parseInt(JOptionPane.showInputDialog(" ERROR EDADA MAYOR QUE 18 ingrese Edad de Soldado Correcta?"));
                         }
+                        int arma = 0;
                         int Rango = Integer.parseInt(JOptionPane.showInputDialog("Rango de Soldado?"));
                         String Tipodearma = JOptionPane.showInputDialog("Tipo de arma de Soldado?");
-                        int arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
-                                + "2. Revolver Navant\n"
-                                + "3. RPG-7"));
+                        if (edad > 25) {
+                            arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
+                                    + "2. Revolver Navant\n"));
+                        } else {
+                            arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
+                                    + "2. Revolver Navant\n"
+                                    + "3. RPG-7"));
+                        }
+
                         if (arma == 1) {
                             soldadorus.add(new SoldadosRusos(nombreruso, id, edad, Rango, edad * 8, Tipodearma, "AK-47"));
                         } else if (arma == 2) {
@@ -60,9 +68,17 @@ public class Lab2wilmer11511242 {
                         soldadorus.get(modi).setNombre(JOptionPane.showInputDialog("Nombre de Soldado?"));
                         soldadorus.get(modi).setRango(Integer.parseInt(JOptionPane.showInputDialog("Rango de Soldado?")));
                         soldadorus.get(modi).setTipoArma(JOptionPane.showInputDialog("Tipo de arma de Soldado?"));
-                        int arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
-                                + "2. Revolver Navant\n"
-                                + "3. RPG-7"));
+                        int arma = 0;
+                        if (soldadorus.get(modi).getEdad() > 25) {
+                            arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
+                                    + "2. Revolver Navant\n"
+                            ));
+                        } else {
+                            arma = Integer.parseInt(JOptionPane.showInputDialog("1. AK-47 \n"
+                                    + "2. Revolver Navant\n"
+                                    + "3. RPG-7"));
+                        }
+
                         if (arma == 1) {
                             soldadorus.get(modi).setArma("AK-47");
                         } else if (arma == 2) {
@@ -94,7 +110,7 @@ public class Lab2wilmer11511242 {
                         String Alias = JOptionPane.showInputDialog("Alias de Soldado Aleman?");
                         int edad = Integer.parseInt(JOptionPane.showInputDialog("edad de Soldado Aleman??"));
                         while (edad < 0) {
-                             edad = Integer.parseInt(JOptionPane.showInputDialog("ERROR tiene que ser mayor que cero ingrese Edad de Soldado Aleman??"));
+                            edad = Integer.parseInt(JOptionPane.showInputDialog("ERROR tiene que ser mayor que cero ingrese Edad de Soldado Aleman??"));
                         }
                         String Casta = JOptionPane.showInputDialog("Casta de Soldado Aleman?");
                         String TipoDeARMA = JOptionPane.showInputDialog("Tipo de arma de Soldado Aleman?");
@@ -155,8 +171,8 @@ public class Lab2wilmer11511242 {
                         String apodo = JOptionPane.showInputDialog("Apodo de alumno?");
                         int cuenta = Integer.parseInt(JOptionPane.showInputDialog("Numero de cuenta"));
                         int edad = Integer.parseInt(JOptionPane.showInputDialog("edad de alumno??"));
-                        while (edad<16){
-                        edad = Integer.parseInt(JOptionPane.showInputDialog("ERROR EDAD TIENE QUE SER MAYOR QUE 16 ingrese edad de alumno??"));
+                        while (edad < 16) {
+                            edad = Integer.parseInt(JOptionPane.showInputDialog("ERROR EDAD TIENE QUE SER MAYOR QUE 16 ingrese edad de alumno??"));
                         }
                         String grado = JOptionPane.showInputDialog("Grado Academico  de alumno?");
                         String tipodearma = JOptionPane.showInputDialog("tipo de arma de alumno?");
@@ -206,12 +222,167 @@ public class Lab2wilmer11511242 {
                     }
                 }
             } else if (opcion.equalsIgnoreCase("d")) {
+                Random ale = new Random();
+                int[] camporuso = new int[soldadorus.size()];
+                int[] campoaleman = new int[alemanes.size()];
+                int[] campoalumno = new int[alumnos.size()];
+                for (int i = 0; i < soldadorus.size(); i++) {
+                    camporuso[i] = soldadorus.get(i).getResistencia();
+                }
+                for (int i = 0; i < alemanes.size(); i++) {
+                    campoaleman[i] = alemanes.get(i).getResistencia();
+                }
+                for (int i = 0; i < alumnos.size(); i++) {
+                    campoalumno[i] = alumnos.get(i).getResistencia();
+                }
 
+                if (soldadorus.size() >= 0 && alemanes.size() >= 0 && alumnos.size()
+                        >= 0) {
+
+                    boolean batalla = true;
+                    String caidos = "";
+                    int cont = 0;
+                    while (batalla) {
+
+                        int poderfuergo = 0;
+                        for (int i = 0; i < camporuso.length; i++) {
+                            if (soldadorus.get(i).getArma().equals("AK-47")) {
+                                poderfuergo = 27;
+                            } else if (soldadorus.get(i).getArma().equals("Revolver Navant")) {
+                                poderfuergo = 13;
+                            } else {
+                                poderfuergo = 57;
+                            }
+                            if (campoaleman.length < i) {
+
+                            } else if (campoaleman[i] == 0) {
+                                cont++;
+                                caidos += cont + "Nombre : " + alemanes.get(i).getAlias() + " ejercito Aleman";
+                            } else {
+                                campoaleman[i] = campoaleman[i] - poderfuergo;
+                            }
+                        }
+                        for (int i = 0; i < camporuso.length; i++) {
+                            if (soldadorus.get(i).getArma().equals("AK-47")) {
+                                poderfuergo = 27;
+                            } else if (soldadorus.get(i).getArma().equals("Revolver Navant")) {
+                                poderfuergo = 13;
+                            } else {
+                                poderfuergo = 57;
+                            }
+                            if (campoalumno.length < i) {
+
+                            } else if (campoalumno[i] <= 0) {
+                                cont++;
+                                caidos += cont + "Nombre : " + soldadorus.get(i).getNombre() + " ejercito Alumno";
+                            } else {
+                                campoalumno[i] = campoalumno[i] - poderfuergo;
+                            }
+                        }
+                        for (int i = 0; i < campoaleman.length; i++) {
+                            if (alemanes.get(i).getArma().equals("Subfusiles MP40")) {
+                                poderfuergo = 25;
+                            } else if (soldadorus.get(i).getArma().equals("Ametralladora MG42")) {
+                                poderfuergo = 32;
+                            } else {
+                                poderfuergo = 11;
+                            }
+                            if (campoalumno.length < i) {
+
+                            }
+                            if (camporuso[i] <= 0) {
+                                cont++;
+                                caidos += cont + "Nombre : " + soldadorus.get(i).getNombre() + " ejercito riso";
+                            } else {
+                                camporuso[i] = camporuso[i] - poderfuergo;
+                            }
+                        }
+                        for (int i = 0; i < campoaleman.length; i++) {
+                            if (alemanes.get(i).getArma().equals("Subfusiles MP40")) {
+                                poderfuergo = 25;
+                            } else if (soldadorus.get(i).getArma().equals("Ametralladora MG42")) {
+                                poderfuergo = 32;
+                            } else {
+                                poderfuergo = 11;
+                            }
+                            if (campoalumno[i] <= 0 ) {
+                                cont++;
+                                caidos += cont + "Nombre : " + soldadorus.get(i).getNombre() + " ejercito Alumno";
+
+                            } else {
+                                campoalumno[i] = campoalumno[i] - poderfuergo;
+                            }
+                        }
+                        for (int i = 0; i < campoalumno.length; i++) {
+                            if (alumnos.get(i).getMochila().equals("Discos duros")) {
+                                poderfuergo = 23;
+                            } else if (soldadorus.get(i).getArma().equals("Controles de Wii")) {
+                                poderfuergo = 47;
+                            } else {
+                                poderfuergo = 76;
+                            }
+                            if (camporuso[i] <= 0 || camporuso.length < i) {
+
+                            } else {
+                                camporuso[i] = camporuso[i] - poderfuergo;
+                            }
+                        }
+                        for (int i = 0; i < campoalumno.length; i++) {
+                            if (alumnos.get(i).getMochila().equals("Discos duros")) {
+                                poderfuergo = 23;
+                            } else if (soldadorus.get(i).getArma().equals("Controles de Wii")) {
+                                poderfuergo = 47;
+                            } else {
+                                poderfuergo = 76;
+                            }
+                            if (campoaleman[i] <= 0 || campoaleman.length < i) {
+
+                            } else {
+                                campoaleman[i] = campoaleman[i] - poderfuergo;
+                            }
+                        }
+                        int contarusa = 0;
+                        int contaalemana = 0;
+                        int contaalumno = 0;
+                        for (int i = 0; i < camporuso.length; i++) {
+                            if (camporuso[i] > 0) {
+                                contarusa++;
+                            }
+                        }
+                        for (int i = 0; i < campoaleman.length; i++) {
+                            if (campoaleman[i] > 0) {
+                                contaalemana++;
+                            }
+                        }
+                        for (int i = 0; i < campoalumno.length; i++) {
+                            if (campoalumno[i] > 0) {
+                                contaalumno++;
+                            }
+                        }
+                        if (contarusa > 0 && contaalemana == 0 && contaalumno == 0) {
+                            JOptionPane.showMessageDialog(null, "Gano Ejercito ruso");
+                            batalla = false;
+
+                        } else if (contaalemana > 0 && contarusa == 0 && contaalumno == 0) {
+                            JOptionPane.showMessageDialog(null, "Gano Ejercito Aleman");
+                            batalla = false;
+
+                        } else if (contaalumno > 0 && contaalemana == 0 && contarusa == 0) {
+                            JOptionPane.showMessageDialog(null, "Gano Ejercito de alumno");
+                            batalla = false;
+                        }else{
+                                                    JOptionPane.showMessageDialog(null, "empate");
+
+                        }
+
+                    }
+                }
             } else if (opcion.equalsIgnoreCase("e")) {
-                r='n';
+                r = 'n';
+
             }
         }
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
-    }
 
+    }
 }
